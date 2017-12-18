@@ -1,12 +1,11 @@
 version: '2'
 
 services:
-
   elasticsearch:
     build:
       context: elasticsearch/
-      #    volumes:
-      # - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    volumes:
+      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -18,13 +17,12 @@ services:
   logstash:
     build:
       context: logstash/
-      #    volumes:
-            #      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
-            #      - ./logstash/pipeline:/usr/share/logstash/pipeline
+    volumes:
+      - ./logstash/pipeline/logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro
     ports:
       - "5000:5000"
     environment:
-      - "LS_JAVA_OPTS=-Xms512m -Xmx512m"
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
     networks:
       - elk
     depends_on:
@@ -33,8 +31,8 @@ services:
   kibana:
     build:
       context: kibana/
-      #    volumes:
-            #      - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
+    volumes:
+      - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
     ports:
       - "5601:5601"
     networks:
@@ -45,21 +43,22 @@ services:
   filebeat:
     build:
       context: filebeat/
-      #    volumes:
-            #      - ./filebeat/config/filebeat.yml:/usr/share/filebeat/filebeat.yml
-    ports:
-      - "5601:5601"
+    volumes:
+     - ./filebeat/config/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+     - ./logs:/logs:rw
     networks:
       - elk
       - logs
     depends_on:
-      - elasticsearch
+      - logstash
 
   myapp:
     build:
       context: myapp/
     ports:
       - "8080:80"
+    volumes:
+      - ./logs:/var/log/apache2:rw
     networks:
       - logs
 

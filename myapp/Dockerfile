@@ -5,3 +5,4 @@ RUN apt-get update && \
     apt-get clean
 
 COPY app /var/www/html/
+ADD /var/log/apache22
