@@ -46,7 +46,7 @@ services:
       context: filebeat/
     volumes:
      - ./filebeat/config/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
-     - ./logs:/logs:rw
+     - /tmp:/logs:rw
     networks:
       - elk
       - logs
@@ -59,7 +59,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./logs:/var/log/apache2:rw
+      - /tmp:/var/log/apache2:rw
     networks:
       - logs
 
