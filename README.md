@@ -38,3 +38,5 @@ issues when log forwarder is a group of servers.
 3 log forwarder (Logstash) pipelines can be reconfigured to use also S3 like external log storage, esey to scale (https://www.elastic.co/guide/en/logstash/current/deploying-and-scaling.html)
 
 4 logging store server (ES)
+
+5 Extra: kibana to take a look for a logs
