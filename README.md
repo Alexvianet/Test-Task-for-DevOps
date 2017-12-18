@@ -29,7 +29,8 @@ Extra: as optional external log storage you may use anything (S3, ES). Think abo
 issues when log forwarder is a group of servers.
 
 
-Resolution:
+# Resolution:
+
 1 application server - myapp (apache)
 
 2 log agent which parsing app's logs (filebeat) filebeat.yml can be reconfigured for changing the address of the for logging forwarder and choose what files we want to ship to the logging forwarder
