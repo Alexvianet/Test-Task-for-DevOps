@@ -40,3 +40,7 @@ issues when log forwarder is a group of servers.
 4 logging store server (ES) http://localhost:9200/_cluster/health
 
 5 Extra: kibana to take a look for a logs http://localhost:5601
+
+# Instalation
+
+Clone Repo and Run docker-compose up
