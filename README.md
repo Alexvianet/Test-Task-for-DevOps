@@ -31,12 +31,12 @@ issues when log forwarder is a group of servers.
 
 # Resolution:
 
-1 application server - myapp (apache)
+1 application server - myapp (apache) http://localhost:8080/
 
 2 log agent which parsing app's logs (filebeat) filebeat.yml can be reconfigured for changing the address of the for logging forwarder and choose what files we want to ship to the logging forwarder
 
-3 log forwarder (Logstash) pipelines can be reconfigured to use also S3 like external log storage, esey to scale (https://www.elastic.co/guide/en/logstash/current/deploying-and-scaling.html)
+3 log forwarder (Logstash) pipelines can be reconfigured to use also S3 like external log storage, esey to scale (https://www.elastic.co/guide/en/logstash/current/deploying-and-scaling.html) 
 
-4 logging store server (ES)
+4 logging store server (ES) http://localhost:9200/_cluster/health
 
-5 Extra: kibana to take a look for a logs
+5 Extra: kibana to take a look for a logs http://localhost:5601
