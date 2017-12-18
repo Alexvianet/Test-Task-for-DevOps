@@ -23,7 +23,7 @@ services:
       - "5000:5000"
       - "9600:9600"
     environment:
-      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+      LS_JAVA_OPTS: "-Xms512m -Xmx512m"
     networks:
       - elk
     depends_on:
@@ -65,6 +65,4 @@ services:
 
 networks:
   elk:
-    driver: bridge
-  logs:
     driver: bridge
