@@ -45,11 +45,10 @@ services:
     build:
       context: filebeat/
     volumes:
-     - ./filebeat/config/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
-     - /tmp:/logs:rw
+     - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+     - /tmp:/mnt/log:rw
     networks:
       - elk
-      - logs
     depends_on:
       - logstash
 
@@ -61,7 +60,7 @@ services:
     volumes:
       - /tmp:/var/log/apache2:rw
     networks:
-      - logs
+      - elk
 
 
 networks:

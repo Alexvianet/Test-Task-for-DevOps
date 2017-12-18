@@ -77,8 +77,6 @@ filebeat.config.modules:
 
 #==================== Elasticsearch template setting ==========================
 
-setup.template.settings:
-  index.number_of_shards: 3
   #index.codec: best_compression
   #_source.enabled: false
 
@@ -114,8 +112,6 @@ setup.template.settings:
 
 # Starting with Beats version 6.0.0, the dashboards are loaded via the Kibana API.
 # This requires a Kibana endpoint configuration.
-setup.kibana:
-
   # Kibana Host
   # Scheme and port can be left out and will be set to the default (http and 5601)
   # In case you specify and additional path, the scheme is required: http://localhost:5601/path
@@ -170,7 +166,7 @@ output.logstash:
 # Sets log level. The default log level is info.
 # Available log levels are: critical, error, warning, info, debug
 #logging.level: debug
-logging.level: info
+logging.level: debug
 
 
 # At debug level, you can selectively enable logging only for some components.
